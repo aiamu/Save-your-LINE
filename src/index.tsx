@@ -65,7 +65,7 @@ const Main = (props: MainProp) => {
     let nextnextrawText: string;
     const partner = props.text.substring(7, textArray[0].length - 7);
 
-    for (let i = 4; i < textArray.length - 1; i++) {
+    for (let i = 3; i < textArray.length - 1; i++) {
       if (textArray[i] !== '') {
         //一行を更に水平タブ区切りで分割
         //典型的なメッセージの行であれば、0番目は送信時間、2番目は送信者、3番目はメッセージの内容が入る。
@@ -104,6 +104,7 @@ const Main = (props: MainProp) => {
         }
         /***改行を含むメッセージの処理、ここまで***/
 
+        //相手のメッセージであれば、そのようにtalklogにメッセージ内容を書き込む
         if (rawTextArray[1] === partner) {
           talklog[logindex] =
             <div key={logindex} className={'partner'}>
@@ -116,6 +117,7 @@ const Main = (props: MainProp) => {
               </span>
             </div >
         }
+        //自分のメッセージならば、同じくtalklogに書き込む
         else if (rawTextArray[1] !== undefined) {
           talklog[logindex] =
             <div key={logindex} className={'me'}>
@@ -127,6 +129,7 @@ const Main = (props: MainProp) => {
               </span>
             </div>
         }
+        //どちらでもなければ日付データなので、そのようにtalklogに書き込む
         else {
           talklog[logindex] =
             <div id='date' key={logindex}>
@@ -136,7 +139,7 @@ const Main = (props: MainProp) => {
         logindex++;
       }
     }
-
+    //ヘッダと、talklog配列に書き込まれたログを返す
     return (
       <div id='mainWindow' >
         <div id='header'>
@@ -144,10 +147,7 @@ const Main = (props: MainProp) => {
           {partner}
         </div>
         <br />
-        <div>
-          <div id='date'>
-            {textArray[3]}
-          </div>
+        <div> 
           {talklog}
         </div>
       </div>
