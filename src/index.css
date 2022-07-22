@@ -1,0 +1,131 @@
+body {
+  background-color: rgb(88, 183, 230);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#guideText{
+  background-color: rgba(0, 0, 0, 0.800);
+  border: solid;
+  border-color: rgb(23, 107, 23);
+}
+
+#guideWindow{
+  width: 90vw;
+  z-index: 1;
+  position: absolute;
+  color: aliceblue;  
+}
+
+#guidebutton{
+  background-color: rgb(22, 22, 255);
+  color: white;
+  border-color: white;
+  border-radius: 100%;
+  font-size: larger;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+#guideCloseButton{
+  background-color: rgb(22, 22, 255);
+  color: white;
+  border-color: white;
+  border-radius: 100%;
+  font-size: larger;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.toggle{
+  display: none;
+}
+
+#mainWindow{
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(88, 183, 230);
+  color: white;
+  background-attachment: fixed;
+}
+
+#closeBottun{
+  background-color: rgb(88, 183, 230);
+}
+
+#icon{
+  width: 2em;
+}
+
+#date{
+  background-color: rgba(0, 0, 0, 0.500);
+  border-radius: 5vw;
+  width: fit-content;
+  z-index: 3;
+  margin: 0 auto;
+  
+}
+
+.myMessage{
+  background-color: rgb(44, 220, 94);
+  display: inline-block;
+  margin-right: 5vw;
+  margin-left: auto;
+  margin-left: 0;
+  color: black;
+  border-radius: 1.5vw;
+  width: fit-content ;
+}
+
+.partnerMessage{
+  display: inline-block;
+  background-color: white;
+  color: black;
+  width:auto;
+  border-radius: 1.5vw;
+}
+
+.myTime{
+  height: 1.5em;
+  vertical-align: bottom; 
+}
+
+.partnerTime{
+  vertical-align: bottom;
+}
+
+.me{
+  z-index: 3;
+  text-align: right;
+  
+  right: 0;
+  margin-right: 0;
+  margin-left: auto;
+  margin-top: 2vh;
+  width: 80vw;
+}
+
+.partner{
+  z-index: 3;
+  margin-top: 2vh;  
+  width: 80vw;
+}
+
+#header{
+  width: 100vw;
+  z-index: 4;
+  position: fixed;
+  background-color: rgb(88, 183, 230);
+}
