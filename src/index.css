@@ -87,6 +87,8 @@ code {
   color: black;
   border-radius: 1.5vw;
   width: fit-content ;
+  text-align: left;
+  max-width: 80%;
 }
 
 .partnerMessage{
@@ -95,6 +97,7 @@ code {
   color: black;
   width:auto;
   border-radius: 1.5vw;
+  max-width: 80%;
 }
 
 .myTime{
@@ -114,13 +117,13 @@ code {
   margin-right: 0;
   margin-left: auto;
   margin-top: 2vh;
-  width: 80vw;
+  width: 90vw;
 }
 
 .partner{
   z-index: 3;
   margin-top: 2vh;  
-  width: 80vw;
+  width: 90vw;
 }
 
 #header{

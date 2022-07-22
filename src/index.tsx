@@ -2,8 +2,6 @@ import React, { ReactNode, } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import icon from "./defaultIcon.png";
-import { text } from 'stream/consumers';
-
 
 function toggleGuide() {
   let target = document.getElementById("guideWindow")!;
@@ -14,7 +12,6 @@ function toggleGuide() {
 
 //Guide:ガイドボタンとガイドの内容
 const Guide = () => {
-
   return (
     <>
       <button id='guidebutton' className='toggleButton' onClick={() => toggleGuide()}>
@@ -25,9 +22,9 @@ const Guide = () => {
           X
         </button>
         <div id="guideText">
-          LINEアプリで生成したテキストファイルをこの下のボックスに与え、決定ボタンを押します。<br />
-          あなたがやるべきことはこれだけです。<br />
-          今のところは...
+          LINEのトーク履歴とは、よく消失するもの。
+          ですが、きっとこの世には大切な人との大切な会話の履歴をそのままの形で見ていたいと思う方もいらっしゃるでしょう。<br />
+          そこで役立つのがこのSave your LINEです。トーク履歴のテキストファイルをこのサービスに与えて頂ければ、思い出の中の会話をそのままアナタにお見せできます。<br />
         </div>
       </div>
       <br />
@@ -65,29 +62,47 @@ const Main = (props: MainProp) => {
     const textArray = props.text.split('\n');
     let rawTextArray: Array<string>;
     let nextrawText: string;
-
+    let nextnextrawText: string;
     const partner = props.text.substring(7, textArray[0].length - 7);
-    console.log(partner);
 
-    for (let i = 4; i < textArray.length; i++) {
+    for (let i = 4; i < textArray.length - 1; i++) {
       if (textArray[i] !== '') {
+        //一行を更に水平タブ区切りで分割
+        //典型的なメッセージの行であれば、0番目は送信時間、2番目は送信者、3番目はメッセージの内容が入る。
         rawTextArray = textArray[i].split(String.fromCodePoint(9))
-        //メッセージが改行を含んでいる場合
+
+        /***メッセージが改行を含んでいる場合を処理する***/
         nextrawText = textArray[i + 1];
-        while (nextrawText.split(String.fromCodePoint(9)).length === 1
-          && (nextrawText !== ''
-              || textArray[i + 2].charAt(5) !== '/'
-              )
-        ) {
+        nextnextrawText = textArray[i + 2]
+        //典型的なメッセージの行の形式と違うならループに入る
+        while (nextrawText.split(String.fromCodePoint(9)).length !== 3) {
+          //単に一回改行され、次の行にメッセージの続きがある場合
+          if (nextrawText !== '') {
+            rawTextArray[2] = rawTextArray[2] + '\n' + nextrawText;
+          }
+          //エラー防止用
+          else if(nextnextrawText === undefined){}
+          //２行先のデータが日付データ(xxxx/xx/xx(x))でないなら、改行2連続以上のメッセージなので取得
+          else if (nextnextrawText.charAt(4) !== '/' 
+          || nextnextrawText.charAt(nextnextrawText.length-1) !== ')'
+          || nextnextrawText.charAt(nextnextrawText.length-3) !== '('
+          ) {
+            rawTextArray[2] = rawTextArray[2] + '\n' + nextrawText;
+          }
+          //改行入りメッセージではなく日付データだったので処理終了
+          else {
+            break;
+          }
 
-          console.log(nextrawText);
-
-          rawTextArray[2] = rawTextArray[2] + '\n' + nextrawText;
-
-
+          //次の行に移動、ファイル終端なら処理終了
           i++;
+          if (i >= textArray.length - 1) {
+            break;
+          }
           nextrawText = textArray[i + 1];
+          nextnextrawText = textArray[i + 2];
         }
+        /***改行を含むメッセージの処理、ここまで***/
 
         if (rawTextArray[1] === partner) {
           talklog[logindex] =
@@ -114,7 +129,7 @@ const Main = (props: MainProp) => {
         }
         else {
           talklog[logindex] =
-            <div id='date'>
+            <div id='date' key={logindex}>
               {textArray[i]}
             </div>
         }
@@ -130,9 +145,9 @@ const Main = (props: MainProp) => {
         </div>
         <br />
         <div>
-        <div id='date'>
-              {this.props.text}
-            </div>
+          <div id='date'>
+            {textArray[3]}
+          </div>
           {talklog}
         </div>
       </div>
@@ -177,8 +192,6 @@ class Page extends React.Component<{}, Pagestate> {
           text: dataReader.result as string,
           textNameLen: buf[0].name.length,
         })
-
-
       }
     }
   }
