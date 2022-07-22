@@ -1,46 +1,14 @@
-# Getting Started with Create React App
+#概要
+トーク履歴をテキスト形式で出力するLINE機能を利用し、そのテキストデータを基にLINEのトーク画面を再現するサービスです。
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#サンプルデータについて
+"[LINE] sampleのトーク.txt"
+LINEから出力されるテキストの形式に則ったサンプル。これをデータとして与えて機能の確認が可能。
+日付データ、1回改行、複数回改行、と、今のところ想定している全ての通常メッセージ以外のデータを含んでいます。
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+#今後について
+このサービスは未だ不完全であり、少なくとも以下のような機能追加・修正が可能と考えます。
+・現在対応しているのは個人トークのみ。グループとのトーク履歴に対応する
+・背景画像及び相手のアイコンを指定可能にする
+・誤ったファイルが指定された、あるいは何も指定されていない状態で実行ボタンが押されたならば警告を表示する
+・スタイルの調整(ヘッダの高さ、文字サイズ、吹き出しのサイズ、等)
